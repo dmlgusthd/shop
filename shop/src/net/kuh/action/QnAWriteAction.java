@@ -1,0 +1,39 @@
+package net.kuh.action;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import net.kuh.db.QDAO;
+import net.kuh.db.QnaDTO;
+
+
+@WebServlet("/qna/QnAWrite")
+public class QnAWriteAction extends HttpServlet {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/QnA/QnAWrite.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("euc-kr");
+		
+		String q_category = request.getParameter("q_category");
+		String q_title = request.getParameter("q_title");
+		String q_detail = request.getParameter("q_detail");
+		
+		QnaDTO qnadto = new QnaDTO();
+		qnadto.setQ_category(q_category);
+		qnadto.setQ_title(q_title);
+		qnadto.setQ_detail(q_detail);
+		
+		QDAO dao = new QDAO();
+		dao.insertQna(qnadto);
+		
+		response.sendRedirect("QnAList");
+	}
+
+}
