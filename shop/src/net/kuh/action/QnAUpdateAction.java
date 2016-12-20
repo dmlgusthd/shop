@@ -35,6 +35,7 @@ public class QnAUpdateAction extends HttpServlet {
 		
 		QDAO dao = new QDAO();
 		QnaDTO dto = new QnaDTO();
+		dto.setQ_num(q_num);
 		dto.setQ_category(q_category);
 		dto.setQ_title(q_title);
 		dto.setQ_detail(q_detail);

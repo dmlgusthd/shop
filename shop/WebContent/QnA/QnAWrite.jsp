@@ -22,8 +22,10 @@
 	<input type="text" style="width:70%" name="q_title"></div><br>
 	<label>내용</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<textarea style="resize:none; width:70%" rows="20" name="q_detail"></textarea><br>
+	<center>
 	<input type="submit" value="등록">
 	<input type="button" value="취소" onclick="location.href='QnAList'">
+	</center>
 	</form>
 	
 

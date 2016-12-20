@@ -82,12 +82,14 @@ public int selectTotalBoardCount() {
 	    String sql = "UPDATE qna SET q_category=?, q_title=?, q_detail=? WHERE q_num=?";
 	    try {
 	        connection = this.getConnection();
+	        System.out.println("DB 연결됨");
 	        statement = connection.prepareStatement(sql);
 	        statement.setString(1,dto.getQ_category());
 	        statement.setString(2,dto.getQ_title());
 	        statement.setString(3,dto.getQ_detail());
 	        statement.setInt(4,dto.getQ_num());
 	        rowCount = statement.executeUpdate();
+	        System.out.println("여기까지");
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    } finally {
