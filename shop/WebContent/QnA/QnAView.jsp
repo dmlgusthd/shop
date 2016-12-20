@@ -20,7 +20,7 @@
 	<textarea style="resize:none; width:70%" rows="20" name="q_detail" readonly>${dto.q_detail}</textarea><br>
 	<center>
 	<input type="button" value="수정" onclick="location.href='QnAUpdate?q_num=${dto.q_num}'">
-	<input type="button" value="삭제" onclick="location.href='QnADelete'">
+	<input type="button" value="삭제" onclick="location.href='QnADelete?m_name=${dto.m_name}'">
 	<input type="button" value="목록" onclick="location.href='QnAList'">
 	</center>
 </body>

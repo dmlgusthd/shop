@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/qna/QnADelete")
 public class QnADeleteAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		response.setCharacterEncoding("euc-kr");
+		String m_name = request.getParameter("m_name");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

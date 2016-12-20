@@ -42,6 +42,7 @@
                  	<% 
                  		String SLEVEL = (String)session.getAttribute("SLEVEL");
             			String SID = (String)session.getAttribute("SID");
+            			String SNAME = (String)session.getAttribute("SNAME");
             		if(SID!=null){
             		%>           			
             			<li><br><%=SID%>님 환영합니다!!&nbsp;&nbsp;&nbsp;&nbsp;</li>	
