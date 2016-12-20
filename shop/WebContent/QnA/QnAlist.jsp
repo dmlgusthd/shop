@@ -35,7 +35,7 @@
 			<td>${q.q_num}</td>
 			<td>${q.q_category}</td>
 			<td><a href="QnAView?q_num=${q.q_num}">${q.q_title}</a></td>
-			<td>${member.m_name}</td>
+			<td>${q.m_name}</td>
 			<td>${q.q_date}</td>
 		</tr>
 	</tbody>

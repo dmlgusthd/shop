@@ -172,7 +172,7 @@ public List<QnaDTO> selectQnaListPerPage(int beginRow, int pagePerRow) {
 	System.out.println("selectQnaListPerPage 메서드 실행");
 	List<QnaDTO> list = new ArrayList<QnaDTO>();
     ResultSet resultset = null;
-    String sql = "SELECT q_num, q_category, q_title, m_name, q_date FROM qna ORDER BY q_date DESC LIMIT ?, ?";
+    String sql = "SELECT q_num, q_category, q_title, m_name, q_date FROM qna ORDER BY q_num DESC LIMIT ?, ?";
     try {
         connection = this.getConnection();
         statement = connection.prepareStatement(sql);
