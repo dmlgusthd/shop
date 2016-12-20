@@ -24,7 +24,7 @@
 				</h4>
 			</div>
 			<div id="collapse1" class="panel-collapse collapse in">
-				<div class="panel-body">한번 잘 해 보세요</div>
+				<div class="panel-body">한번 잘 해보세요</div>
 			</div>
 		</div>
 	<div class="panel panel-default">
@@ -48,6 +48,7 @@
 		</div>
 		</div>
 	</div> 
+	
 </div>
     
 </body>
