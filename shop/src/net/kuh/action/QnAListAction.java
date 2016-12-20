@@ -8,9 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.kuh.db.QDAO;
 import net.kuh.db.QnaDTO;
+import net.member.db.Member;
 
 @WebServlet("/qna/QnAList")
 public class QnAListAction extends HttpServlet {
@@ -30,6 +32,9 @@ public class QnAListAction extends HttpServlet {
 		if(totalRowCount%pagePerRow != 0){
 			lastPage++;
 		}
+		HttpSession session = request.getSession();
+		String SID = (String)session.getAttribute("SID");
+		Member member = qdao.selectMname(SID);
 		
 		List<QnaDTO> list = qdao.selectQnaListPerPage(beginRow, pagePerRow);
 		request.setAttribute("currentPage", currentPage);
@@ -37,6 +42,7 @@ public class QnAListAction extends HttpServlet {
 		request.setAttribute("pagePerRow", pagePerRow);
 		request.setAttribute("lastPage", lastPage);
 		request.setAttribute("list", list);
+		request.setAttribute("member", member);
 		request.getRequestDispatcher("/QnA/QnAlist.jsp").forward(request, response);
 		System.out.println("QnAList doGet 메서드 종료 QnAlist.jsp로이동");
 	}

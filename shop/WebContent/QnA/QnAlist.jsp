@@ -18,7 +18,7 @@
 <div class="container">
 	<h1>QnA</h1>
 	<p>질문과 답변</p>      
-	<div><input type="button" value="글쓰기" onclick="location.href='QnAWrite'"/></div>      
+	<div><input type="button" value="글쓰기" onclick="location.href='QnAWrite?m_id=${member.m_id}'"/></div>      
 	<table border=1 width="88%">
 	<thead>
 		<tr>
@@ -35,7 +35,7 @@
 			<td>${q.q_num}</td>
 			<td>${q.q_category}</td>
 			<td><a href="QnAView?q_num=${q.q_num}">${q.q_title}</a></td>
-			<td>${q.m_name}</td>
+			<td>${member.m_name}</td>
 			<td>${q.q_date}</td>
 		</tr>
 	</tbody>

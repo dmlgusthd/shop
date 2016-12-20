@@ -34,7 +34,7 @@
                         <a href="<%= request.getContextPath()%>/Epilogue/epiloguelist.jsp">구매후기</a>
                     </li>
                     <li>
-                        <a href="<%= request.getContextPath()%>/QnA/QnAlist.jsp">고객센터</a>
+                        <a href="<%= request.getContextPath()%>/QnA/FAQView.jsp">고객센터</a>
                     </li>
                     
                 </ul>

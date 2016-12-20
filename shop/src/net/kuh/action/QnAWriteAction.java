@@ -21,14 +21,17 @@ public class QnAWriteAction extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("euc-kr");
 		
+		
 		String q_category = request.getParameter("q_category");
 		String q_title = request.getParameter("q_title");
 		String q_detail = request.getParameter("q_detail");
+		String m_name = request.getParameter("m_name");
 		
 		QnaDTO qnadto = new QnaDTO();
 		qnadto.setQ_category(q_category);
 		qnadto.setQ_title(q_title);
 		qnadto.setQ_detail(q_detail);
+		qnadto.setM_name(m_name);
 		
 		QDAO dao = new QDAO();
 		dao.insertQna(qnadto);

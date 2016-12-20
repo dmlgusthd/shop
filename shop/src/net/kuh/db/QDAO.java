@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.catalina.connector.Request;
+import net.member.db.Member;
 
 public class QDAO {
 	private final String driverClassName = "com.mysql.jdbc.Driver";
@@ -126,13 +126,14 @@ public QnaDTO QnAViewDao(int q_num) {
 public int insertQna(QnaDTO qnadto) {
 	System.out.println("insertQna DAO");
     int rowCount = 0;
-    String sql = "INSERT INTO qna(q_category, q_title, q_detail, q_date) values(?,?,?,now())";
+    String sql = "INSERT INTO qna(q_category, q_title, q_detail, m_name, q_date) values(?,?,?,?,now())";
     try {
         connection = this.getConnection();
         statement = connection.prepareStatement(sql);
         statement.setString(1,qnadto.getQ_category());
         statement.setString(2,qnadto.getQ_title());
         statement.setString(3,qnadto.getQ_detail());
+        statement.setString(4,qnadto.getM_name());
         rowCount = statement.executeUpdate();
     } catch (Exception e) {
         e.printStackTrace();
@@ -141,6 +142,30 @@ public int insertQna(QnaDTO qnadto) {
     }
     return rowCount;
 }
+
+public Member selectMname(String m_id){
+	System.out.println("selectMname 메서드 실행");
+	Member member = null;
+	ResultSet rs = null;
+	String sql = "SELECT m_name FROM member WHERE m_id=?";
+	try{
+		connection = this.getConnection();
+		statement = connection.prepareStatement(sql);
+		statement.setString(1, m_id);
+		rs = statement.executeQuery();
+		if(rs.next()){
+			member = new Member();
+			member.setM_id(m_id);
+			member.setM_name(rs.getString("m_name"));
+		}
+	}catch (Exception e){
+		e.printStackTrace();
+	}finally{
+		this.close(connection, statement, rs);
+	}
+	return member;
+}
+
 
 
 public List<QnaDTO> selectQnaListPerPage(int beginRow, int pagePerRow) {

@@ -9,6 +9,7 @@
 <title>QnA게시판 글쓰기</title>
 </head>
 <body>
+
 <br><br><br>
 	<form action="QnAWrite" method="post">
 	<label>카테고리</label>
