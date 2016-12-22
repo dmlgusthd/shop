@@ -18,7 +18,7 @@ public class QDAO {
     private final String password = "java0000";
     Connection connection = null;
     PreparedStatement statement = null;
-    
+   
 
 
 
@@ -97,12 +97,54 @@ public int selectTotalBoardCount() {
 	    }
 	    return rowCount;
 	}
+	
+	public int deleteQna(String m_name){
+		System.out.println("deleteQna 메서드 실행");
+		int delete = 0;
+		try{
+			connection = this.getConnection();
+			statement = connection.prepareStatement("DELETE FROM qna WHERE m_name=?");
+			statement.setString(1, m_name);
+			delete = statement.executeUpdate();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			this.close(connection, statement, null);
+		}
+		return delete;
+	}
+	
+//List에서 View로 넘어갈때 해당 게시글의 작성자 이름 가져오기
+public QnaDTO mNameSelectToQna(int q_num){
+	System.out.println("mNameSelectToQna 메서드 실행");
+	QnaDTO dto = null;
+	ResultSet rs = null;
+	String sql = "SELECT m_name FROM qna WHERE q_num=?";
+	try{
+		connection = this.getConnection();
+		statement = connection.prepareStatement(sql);
+		statement.setInt(1, q_num);
+		rs = statement.executeQuery();
+		if(rs.next()){
+			dto = new QnaDTO();
+			dto.setQ_num(q_num);
+			dto.setM_name(rs.getString("m_name"));
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		this.close(connection, statement, rs);
+	}
+	
+	return dto;
+}
 
 public QnaDTO QnAViewDao(int q_num) {
     System.out.println("QnAViewDao 메서드 실행");
 	QnaDTO qnadto = null;
     ResultSet resultset = null;
-    String sql = "SELECT q_category, q_title, q_detail FROM qna WHERE q_num=?";
+    String sql = "SELECT q_category, q_title, m_name, q_detail FROM qna WHERE q_num=?";
     try {
         connection = this.getConnection();
         statement = connection.prepareStatement(sql);
@@ -113,6 +155,7 @@ public QnaDTO QnAViewDao(int q_num) {
         	qnadto.setQ_num(q_num);
         	qnadto.setQ_category(resultset.getString("q_category"));
         	qnadto.setQ_title(resultset.getString("q_title"));
+        	qnadto.setM_name(resultset.getString("m_name"));
         	qnadto.setQ_detail(resultset.getString("q_detail"));
         }
     } catch (Exception e) {

@@ -10,6 +10,7 @@
 </head>
 <body>
 <br><br><br>
+	<form action="QnADelete" method="post">
 	<label>카테고리</label>
 		<select name="q_category" readonly>
 			<option>${dto.q_category}</option>
@@ -19,9 +20,13 @@
 	<label>내용</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<textarea style="resize:none; width:70%" rows="20" name="q_detail" readonly>${dto.q_detail}</textarea><br>
 	<center>
+	<input type="hidden" value='${member.m_name}' name="m_name">
+	<input type="hidden" value='${member.m_id}' name="m_id">
+	<input type="hidden" value='${dto.q_num}' name="q_num">
 	<input type="button" value="수정" onclick="location.href='QnAUpdate?q_num=${dto.q_num}'">
-	<input type="button" value="삭제" onclick="location.href='QnADelete?m_name=${dto.m_name}'">
+	<input type="submit" value="삭제">
 	<input type="button" value="목록" onclick="location.href='QnAList'">
 	</center>
+	</form>
 </body>
 </html>
