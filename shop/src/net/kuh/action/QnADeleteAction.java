@@ -20,7 +20,6 @@ import net.kuh.db.QnaDTO;
 @WebServlet("/qna/QnADelete")
 public class QnADeleteAction extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("euc-kr");
 		response.setCharacterEncoding("euc-kr");
 		System.out.println("QnaDeleteAction doPost메서드 실행");
 		PrintWriter out = response.getWriter();
