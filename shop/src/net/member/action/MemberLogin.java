@@ -49,6 +49,7 @@ public class MemberLogin extends HttpServlet {
 		}else{
 			session.setAttribute("SID", member.getM_id());
 			session.setAttribute("SLEVEL", member.getM_level());
+			session.setAttribute("SNAME", member.getM_name());
 			response.sendRedirect(request.getContextPath()+ "/index.jsp");
 		}
 		

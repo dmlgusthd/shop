@@ -37,12 +37,13 @@ public class MemberDAO {
 		System.out.println("06 loginMember 메서드 실행");
 			try{
 				conn = this.getConnection();
-				stmt = conn.prepareStatement("SELECT m_pw,m_level FROM MEMBER WHERE m_id = ?");
+				stmt = conn.prepareStatement("SELECT m_name,m_pw,m_level FROM MEMBER WHERE m_id = ?");
 				stmt.setString(1, m_id);
 				rs = stmt.executeQuery();
 				if(rs.next()){
 					member = new Member();
 					member.setM_id(m_id);
+					member.setM_name(rs.getString("m_name"));
 					member.setM_level(rs.getString("m_level"));
 					member.setM_pw(rs.getString("m_pw"));
 				}else{

@@ -2,6 +2,7 @@
     pageEncoding="EUC-KR"%>
 <%@ include file = "../module/top.jsp" %>
 <%@ include file = "../module/Qnaleft.jsp" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,6 +10,7 @@
 <title>QnA상세보기</title>
 </head>
 <body>
+<%response.setContentType("text/html charset=euc-kr"); %>
 <br><br><br>
 	<form action="QnADelete" method="post">
 	<label>카테고리</label>
@@ -28,5 +30,9 @@
 	<input type="button" value="목록" onclick="location.href='QnAList'">
 	</center>
 	</form>
+	<%
+		String m_name = (String)session.getAttribute("SNAME");
+		System.out.println("m_name 값 : " + m_name);
+	%>
 </body>
 </html>

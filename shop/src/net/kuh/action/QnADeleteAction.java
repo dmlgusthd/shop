@@ -20,38 +20,43 @@ import net.kuh.db.QnaDTO;
 @WebServlet("/qna/QnADelete")
 public class QnADeleteAction extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("euc-kr");
+		response.setCharacterEncoding("euc-kr");
 		System.out.println("QnaDeleteAction doPost메서드 실행");
 		PrintWriter out = response.getWriter();
 		QDAO qdao = new QDAO();
-		response.setCharacterEncoding("euc-kr");
 		int q_num = Integer.parseInt(request.getParameter("q_num"));
 		HttpSession session = request.getSession();
 		String SID = (String)session.getAttribute("SID");
+		String SNAME = (String)session.getAttribute("SNAME");
 		String m_id = request.getParameter("m_id");
 		System.out.println("m_id is " + m_id);
 		String m_name = request.getParameter("m_name");
 		System.out.println("m_name is " + m_name);
-		
-		QnaDTO name = qdao.mNameSelectToQna(q_num);
-		Object mname = name;
 		String temp = "var temp = confirm('정말 삭제하시겠습니까?')";
 		
 		if(m_id.equals(SID)){
 			response.setContentType("text/html;charset=euc-kr");
 			System.out.println("if문 실행");
-			out.println("<script>");
+			out.println("<script language=javascript>");
 			out.println("function {");
-			out.println("var temp = confirm('정말 삭제하시겠습니까?')");
-			if(temp != null){
-				System.out.println("확인");
+			//out.println("var temp = confirm('정말 삭제하시겠습니까?')");
+			out.println("if(confirm('정말 삭제하시겠습니까?')){");
+			System.out.println("확인 누름");
+			int delete = qdao.deleteQna(m_name);
+			/*if(temp != null){
+				System.out.println("확인 누름");
 				int delete = qdao.deleteQna(m_name);
 				response.sendRedirect("QnAList");
 			}else{
-				System.out.println("취소");
-			}
+				System.out.println("취소 누름");
+			}*/
+			out.println("}else{");
+			out.println("System.out.println('취소누름');");
 			out.println("}");
 			out.println("</script>");
-		}else if(m_id == null || m_name != mname){
+			response.sendRedirect("QnAList");
+		}else if(m_id == null || m_name != SNAME){
 			out.println("<script>");
 	   		out.println("alert('권한이 없습니다.');");
 	   		out.println("history.go(-1)");
